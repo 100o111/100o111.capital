@@ -1,31 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>100o111</title>
-    <link rel="icon" href="https://i.pinimg.com/736x/55/b7/cc/55b7ccc52a4199704ca1bef8e7ff1d13.jpg">
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            font-family: Helvetica, Arial, sans-serif;
-            font-size: 12px; 
-            line-height: 1.4;
-            background-color: #ffffff;
-        }
-        img {
-            max-width: 250px;
-            height: auto;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>100o111 NFT Listing</title>
+  <style>
+    /* Basic styling for our two widgets */
+    #wallet-widget, #nft-widget {
+      background: #ffffff; /* white background for minimalistic design */
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      max-width: 350px;
+      padding: 16px;
+      margin: 20px auto;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+  </style>
 </head>
 <body>
-    <div class="text">
-        The entire internet is going to be deleted
-    </div>
+  <!-- Container for the Wallet Connect widget -->
+  <div id="wallet-widget">
+    <!-- The Manifold Wallet Connect widget will render here -->
+  </div>
+
+  <!-- Container for the NFT listing card widget -->
+  <div id="nft-widget">
+    <!-- The Manifold NFT listing widget will render here -->
+  </div>
+
+  <!-- Include the Manifold Wallet Connect widget script -->
+  <script src="https://widget.manifold.xyz/dist/walletconnect.js"></script>
+  <!-- Include the Manifold NFT widget script -->
+  <script src="https://widget.manifold.xyz/dist/widget.js"></script>
+  <script>
+    // Initialize the Wallet Connect widget from Manifold
+    // (Assuming the function is called ManifoldWalletConnect.init, per documentation)
+    ManifoldWalletConnect.init({
+      container: document.getElementById('wallet-widget'),
+      appName: "100o111",
+      // Add any additional wallet connect options as required
+    });
+
+    // Initialize the NFT listing widget with card layout
+    ManifoldWidget.init({
+      listingId: 1329,        // The NFT listing ID from your URL
+      appName: "100o111",
+      container: document.getElementById('nft-widget'),
+      layout: "card",         // Card layout for a minimalistic design
+      background: "white",    // White background
+      // Optionally, you might be able to link the wallet connect widget by passing its container or instance:
+      // walletWidgetContainer: document.getElementById('wallet-widget'),
+    });
+  </script>
 </body>
 </html>
