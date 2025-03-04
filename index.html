@@ -3,29 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>100o111</title>
-    <link rel="icon" href="https://i.pinimg.com/736x/55/b7/cc/55b7ccc52a4199704ca1bef8e7ff1d13.jpg">
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            font-family: Helvetica, Arial, sans-serif;
-            font-size: 12px; 
-            line-height: 1.4;
-            background-color: #ffffff;
-        }
-        img {
-            max-width: 250px;
-            height: auto;
-        }
-    </style>
+    <title>100O111 Marketplace</title>
+
+    <!-- Manifold Marketplace Widget CSS -->
+    <link rel="stylesheet" href="https://marketplace.manifoldxyz.dev/3.5.18/marketplace.css">
+    <link rel="stylesheet" href="https://marketplace.manifoldxyz.dev/3.5.18/marketplace.manifold-light.css">
+
+    <!-- Manifold Connect Widget CSS -->
+    <link rel="stylesheet" href="https://connect.manifoldxyz.dev/3.0.0/connect.css">
 </head>
 <body>
-    <div class="text">
-        The entire internet is going to be deleted
+
+    <!-- Wallet Connect Button (Required for purchases) -->
+    <div 
+        data-widget="m-connect"
+        data-app-name="100O111"
+        data-network="8453">
     </div>
+
+    <!-- Manifold Card Listing Widget -->
+    <div 
+        data-widget="m-card-listing"
+        data-network="8453" 
+        data-id="1329">
+    </div>
+
+    <!-- Manifold Marketplace Widget Script -->
+    <script src="https://marketplace.manifoldxyz.dev/3.5.18/marketplace.umd.min.js"></script>
+
+    <!-- Manifold Connect Widget Script -->
+    <script src="https://connect.manifoldxyz.dev/3.0.0/connect.umd.min.js"></script>
+
 </body>
 </html>
