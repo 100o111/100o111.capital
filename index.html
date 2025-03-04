@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-     <script src="https://connect.manifoldxyz.dev/latest/connect.umd.min.js"></script>
-  <link rel="stylesheet" href="https://connect.manifoldxyz.dev/latest/connect.css">
-     
+    <script src="https://connect.manifoldxyz.dev/latest/connect.umd.min.js"></script>
+    <link rel="stylesheet" href="https://connect.manifoldxyz.dev/latest/connect.css">
+    
     <script src="https://identity.manifoldxyz.dev/latest/walletIdentity.umd.min.js"></script>
     <link rel="stylesheet" href="https://identity.manifoldxyz.dev/latest/walletIdentity.css" />
 
@@ -19,56 +19,54 @@
     <style>
         body {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            height: 50vh;
+            justify-content: center;
+            height: 100vh;
             margin: 0;
             font-family: Helvetica, Arial, sans-serif;
-            font-size: 16px; 
+            font-size: 16px;
             line-height: 1.4;
             background-color: #ffffff;
+            position: relative;
         }
-        img {
-            max-width: 250px;
-            height: auto;
+        .wallet-connect {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+        .card-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .card-container > div {
+            transform: scale(0.8);
         }
     </style>
 </head>
 <body>
-</div>
+    <div class="wallet-connect">
+        <div 
+            data-widget="m-connect"
+            data-grant-type="signature"
+            data-client-id="2d2b78b292a4f331a9e8d1db72bca4000dffbafe630af406c38f5f589da98fe3"  
+            data-app-name="100o111"  
+            data-network="8453">
+        </div>
+    </div>
+    
+    <div>
         Performance art on the internet
     </div>
+    
+    <div class="card-container">
+        <div data-widget="m-card-catalog" data-id="1329" data-network="8453"></div>
+        <div data-widget="m-card-catalog" data-id="1330" data-network="8453"></div>
+        <div data-widget="m-card-catalog" data-id="1331" data-network="8453"></div>
+    </div>
+</body>
+</html>
 
-<br>    
-<div  
-    data-widget="m-connect"
-    data-grant-type="signature"
-    data-client-id="2d2b78b292a4f331a9e8d1db72bca4000dffbafe630af406c38f5f589da98fe3"  
-    data-app-name="100o111"  
-    data-network="8453"
-  >
-  </div>
-
-<br>     
-<div
-  data-widget="m-card-catalog"
-  data-id="1329"
-  data-network="8453"
-></div>
-
-<br>     
-<div
-  data-widget="m-card-catalog"
-  data-id="1330"
-  data-network="8453"
-></div>
-
-<br>     
-<div
-  data-widget="m-card-catalog"
-  data-id="1331"
-  data-network="8453"
-></div>
-     
 </body>
 </html>
