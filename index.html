@@ -1,6 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- replace the specific version with `latest` to get the most up-to-date version of the widgets. -->
+    <!-- WARNING: `latest` may cause breakage, so use with caution -->
+    <script src="https://connect.manifoldxyz.dev/2.2.4/connect.umd.min.js"></script>
+    <link rel="stylesheet" href="https://connect.manifoldxyz.dev/2.2.4/connect.css" />
+
+    <script src="https://identity.manifoldxyz.dev/2.1.0/walletIdentity.umd.min.js"></script>
+    <link rel="stylesheet" href="https://identity.manifoldxyz.dev/2.1.0/walletIdentity.css" />
+
+    <script src="https://restrictedtoken.manifoldxyz.dev/0.1.0/restrictedToken.umd.min.js"></script>
+    <link rel="stylesheet" href="https://restrictedtoken.manifoldxyz.dev/0.1.0/restrictedToken.css" />
+
+    <script src="https://marketplace.manifoldxyz.dev/3.3.7/marketplace.umd.min.js"></script>
+    <link rel="stylesheet" href="https://marketplace.manifoldxyz.dev/3.3.7/marketplace.css" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>100o111</title>
@@ -24,6 +37,17 @@
     </style>
 </head>
 <body>
+    <div
+      id="connect"
+      data-widget="m-connect"
+      data-delay-auth="true"
+      data-network="base"
+    ></div>
+    <div
+      data-widget="m-card-catalog"
+      data-id="1329"
+      data-network="base"
+    ></div>
     <div class="text">
         Performance art on the internet
     </div>
