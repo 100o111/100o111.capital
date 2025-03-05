@@ -31,13 +31,19 @@
             position: relative;
         }
         .wallet-connect {
-          position: absolute;
+            position: absolute;
             top: 10px;
             right: 10px;
+        }
+        .card-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         .card-container {
             display: flex;
             gap: 10px;
+            justify-content: center;
             margin-top: 20px;
         }
         .card-container > div {
@@ -56,16 +62,15 @@
         </div>
     </div>
     
-    <div class="card-container">
-        <div data-widget="m-card-catalog" data-id="1329" data-network="8453"></div>
-        <div data-widget="m-card-catalog" data-id="1330" data-network="8453"></div>
-        <div data-widget="m-card-catalog" data-id="1331" data-network="8453"></div>
+    <div class="card-wrapper">
+        <div class="card-container">
+            <div data-widget="m-card-catalog" data-id="1329" data-network="8453"></div>
+            <div data-widget="m-card-catalog" data-id="1330" data-network="8453"></div>
+            <div data-widget="m-card-catalog" data-id="1331" data-network="8453"></div>
+        </div>
+        <div class="card-container">
+            <div data-widget="m-card-catalog" data-id="1332" data-network="8453"></div>
+        </div>
     </div>
-    <div class="card-container">
-        <div data-widget="m-card-catalog" data-id="1332" data-network="8453"></div>
-    </div>
-</body>
-</html>
-
 </body>
 </html>
