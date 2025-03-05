@@ -39,6 +39,8 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
+            height: 100%;
         }
         .card-container {
             display: flex;
@@ -48,6 +50,9 @@
         }
         .card-container > div {
             transform: scale(0.95);
+        }
+        .card-container:last-child {
+            margin-top: 40px; /* Pushes the fourth card down */
         }
     </style>
 </head>
