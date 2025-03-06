@@ -26,7 +26,10 @@
     />
 
     <style>
-      /* Use Helvetica as the main font */
+      /* 
+        1) Use Helvetica as the main font.
+        2) Remove default margin/padding.
+      */
       body {
         margin: 0;
         padding: 0;
@@ -35,9 +38,10 @@
       }
 
       /*
-       * Use Manifold CSS variables to remove the black box
-       * around the widgets
+       * 2) Use Manifold CSS variables to remove the black box 
+       *    around the widgets globally.
        */
+      :root,
       .manifold-widget-container {
         --manifold-border--color: transparent;
         --manifold-border--width: 0px;
@@ -46,37 +50,73 @@
         --manifold-element--color--background: transparent;
       }
 
-      /* A wrapper for all card catalogs to hide on mobile if needed */
+      /*
+       * 3) Fix the "ended" label so it's a small overlay in 
+       *    the top-right corner, rather than covering the image.
+       *    (This targets the typical "Ended" badge in Manifold’s UI.)
+       */
+      .manifold-element__badge--ended {
+        position: absolute !important;
+        top: 8px !important;
+        right: 8px !important;
+        left: auto !important;
+        background: rgba(255, 255, 255, 0.8) !important;
+        color: #000 !important;
+        font-size: 14px !important;
+        padding: 2px 6px !important;
+        border-radius: 4px !important;
+        z-index: 2;
+      }
+
+      /*
+       * 4) Scale the top catalogs to be larger, 
+       *    and the bottom catalog to be a bit smaller.
+       */
       .card-wrapper {
         margin: 40px auto;
         max-width: 1200px;
       }
 
-      /* Layout for the top row of three catalogs */
+      /* Row of 3 card catalogs */
       .catalog-row {
         display: flex;
         justify-content: center;
         gap: 20px; /* space between items */
         margin-bottom: 30px;
       }
+      /* Make top row catalogs bigger */
+      .catalog-row .manifold-widget-container {
+        width: 320px !important;
+        height: auto !important;
+      }
 
-      /* Single catalog on its own row */
+      /* Single catalog on its own row (bottom) */
       .single-catalog {
         display: flex;
         justify-content: center;
         margin-bottom: 30px;
       }
+      /* Make bottom catalog smaller */
+      .single-catalog .manifold-widget-container {
+        width: 280px !important;
+        height: auto !important;
+      }
 
-      /* Wallet connect in the top-right corner */
+      /*
+       * 5) Position wallet connect in top-right corner
+       *    and scale it down a bit.
+       */
       .wallet-connect {
         position: absolute;
         top: 20px;
         right: 20px;
+        transform: scale(0.9);
+        transform-origin: top right;
       }
 
       /*
-       * Mobile screen overlay
-       * Hide all widgets on small screens and display a message
+       * 6) Mobile screen overlay
+       *    Hide all widgets on small screens and display a message
        */
       @media (max-width: 768px) {
         body {
@@ -104,7 +144,7 @@
   </head>
 
   <body>
-    <!-- Wallet connect button (top-right corner) -->
+    <!-- Wallet connect button (top-right corner, scaled down) -->
     <div class="wallet-connect">
       <div
         data-widget="m-connect"
@@ -119,14 +159,14 @@
 
     <!-- Card catalogs container -->
     <div class="card-wrapper">
-      <!-- Row of 3 card catalogs -->
+      <!-- Row of 3 card catalogs (larger) -->
       <div class="catalog-row">
         <div data-widget="m-card-catalog" data-id="1329" data-network="8453"></div>
         <div data-widget="m-card-catalog" data-id="1330" data-network="8453"></div>
         <div data-widget="m-card-catalog" data-id="1331" data-network="8453"></div>
       </div>
 
-      <!-- Single card catalog beneath -->
+      <!-- Single card catalog beneath (smaller) -->
       <div class="single-catalog">
         <div data-widget="m-card-catalog" data-id="1332" data-network="8453"></div>
       </div>
