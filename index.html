@@ -188,6 +188,30 @@
         <div data-widget="m-card-catalog" data-id="1332" data-network="8453"></div>
       </div>
     </div>
+
+    <!-- JavaScript to make the title in the 1330 listing clickable -->
+    <script>
+      // Poll until the title element is rendered inside the 1330 widget
+      window.addEventListener("load", function () {
+        var interval = setInterval(function () {
+          var widget = document.querySelector(
+            'div[data-widget="m-card-catalog"][data-id="1330"]'
+          );
+          if (widget) {
+            // Adjust the selector to match the actual title element in the widget
+            var titleEl = widget.querySelector(".manifold-element__title");
+            if (titleEl && !titleEl.querySelector("a")) {
+              var link = document.createElement("a");
+              link.href = "https://internetwork.ing";
+              link.target = "_blank";
+              link.innerHTML = titleEl.innerHTML;
+              titleEl.innerHTML = "";
+              titleEl.appendChild(link);
+              clearInterval(interval);
+            }
+          }
+        }, 500);
+      });
+    </script>
   </body>
 </html>
-
