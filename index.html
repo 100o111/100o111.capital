@@ -54,6 +54,25 @@
         .card-container:last-child {
             margin-top: 40px; /* Pushes the fourth card down */
         }
+        /* Use Manifold CSS variables to remove the black box */
+        .manifold-widget-container {
+            --manifold-border--color: transparent;
+            --manifold-border--width: 0px;
+            --manifold-border--style: none;
+            --manifold-border--radius: 0px;
+            --manifold-element--color--background: transparent;
+        }
+        /* Remove the dot and grey background from status labels */
+        .m-card-catalog-status {
+            background: none !important;
+            color: inherit !important;
+            padding: 0 !important;
+            font-weight: normal !important;
+            display: inline !important;
+        }
+        .m-card-catalog-status::before {
+            content: none !important;
+        }
     </style>
 </head>
 <body>
@@ -81,55 +100,7 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            console.log("Manifold widgets loading...");
-
-            function applyStyles() {
-                const widgets = document.querySelectorAll('div[data-widget="m-card-catalog"]');
-                if (widgets.length === 0) {
-                    console.warn("Manifold widgets not found yet. Retrying...");
-                    setTimeout(applyStyles, 500);
-                    return;
-                }
-                
-                widgets.forEach(widget => {
-                    let shadow = widget.shadowRoot;
-                    if (shadow && !shadow.querySelector("#customStyles")) {
-                        let style = document.createElement("style");
-                        style.id = "customStyles";
-                        style.textContent = `
-                            /* Remove grey background from "Ended" */
-                            .m-card-catalog-status {
-                                background: none !important;
-                                color: inherit !important;
-                                padding: 0 !important;
-                                font-weight: normal !important;
-                                display: inline-block !important;
-                                font-size: 24px !important;
-                                text-transform: uppercase !important;
-                            }
-                            .m-card-catalog-status::before {
-                                display: none !important;
-                            }
-                            /* Make text bigger while keeping the image the same size */
-                            .m-card-catalog-price, 
-                            .m-card-catalog-title, 
-                            .m-card-catalog-description {
-                                font-size: 26px !important;
-                                font-weight: bold !important;
-                            }
-                            /* Ensure images stay the same size */
-                            .m-card-catalog-image {
-                                width: auto !important;
-                                height: auto !important;
-                            }
-                        `;
-                        shadow.appendChild(style);
-                    }
-                });
-                console.log("Custom styles applied to Manifold widgets.");
-            }
-            
-            setTimeout(applyStyles, 1000);
+            console.log("Manifold widgets loaded");
         });
     </script>
 </body>
