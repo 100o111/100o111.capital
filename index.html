@@ -51,42 +51,48 @@
       }
 
       /*
-       * 3) Tweak the "ended" label so it has no background
-       *    and is small in the top-right corner of the card.
+       * 3) Remove all backgrounds from the card area and 
+       *    "Ended" badge. Keep text, but no grey box.
        */
+      .manifold-element--card,
+      .manifold-element__badge--ended,
+      .manifold-element__badge--ended * {
+        background: none !important;
+        border: none !important;
+      }
+      /* Reposition "Ended" text if needed */
       .manifold-element__badge--ended {
         position: absolute !important;
         top: 8px !important;
         right: 8px !important;
-        left: auto !important;
-        background: none !important; /* remove background */
         color: #000 !important;
         font-size: 14px !important;
-        padding: 0px !important;
-        border-radius: 0px !important;
+        padding: 0 !important;
+        border-radius: 0 !important;
         z-index: 2;
       }
 
       /*
-       * 4) Hide the word "Price" while keeping the numeric value.
-       *    This targets typical Manifold label classes for price.
-       *    Adjust if needed after inspecting the final DOM.
+       * 4) Hide the word "Price" or "price" label while 
+       *    keeping the numeric value. 
+       *    (Adjust these selectors if needed after checking final DOM.)
        */
-      .manifold-element__price-label {
+      .manifold-element__price-label,
+      .manifold-element__label--price,
+      .manifold-element__label[data-label="price"] {
         display: none !important;
       }
 
       /*
-       * 5) Larger catalogs for both top and bottom.
+       * 5) Make all catalogs (top & bottom) the same size.
        */
       .card-wrapper {
         margin: 40px auto;
         max-width: 1200px;
       }
-
-      /* Both top row and bottom catalogs the same size */
-      .manifold-widget-container {
-        width: 360px !important; /* bigger than before */
+      .catalog-row .manifold-widget-container,
+      .single-catalog .manifold-widget-container {
+        width: 360px !important;
         height: auto !important;
       }
 
@@ -94,7 +100,7 @@
       .catalog-row {
         display: flex;
         justify-content: center;
-        gap: 20px;
+        gap: 20px; /* space between items */
         margin-bottom: 30px;
       }
 
@@ -112,7 +118,7 @@
         position: absolute;
         top: 20px;
         right: 20px;
-        transform: scale(0.75); /* smaller than before */
+        transform: scale(0.6); /* smaller */
         transform-origin: top right;
       }
 
@@ -161,14 +167,14 @@
 
     <!-- Card catalogs container -->
     <div class="card-wrapper">
-      <!-- Row of 3 card catalogs (all same size) -->
+      <!-- Row of 3 card catalogs -->
       <div class="catalog-row">
         <div data-widget="m-card-catalog" data-id="1329" data-network="8453"></div>
         <div data-widget="m-card-catalog" data-id="1330" data-network="8453"></div>
         <div data-widget="m-card-catalog" data-id="1331" data-network="8453"></div>
       </div>
 
-      <!-- Single card catalog beneath (same size) -->
+      <!-- Single card catalog (same size) -->
       <div class="single-catalog">
         <div data-widget="m-card-catalog" data-id="1332" data-network="8453"></div>
       </div>
