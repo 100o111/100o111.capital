@@ -73,6 +73,26 @@
         .m-card-catalog-status::before {
             content: none !important;
         }
+        /* Mobile screen overlay */
+        @media (max-width: 768px) {
+            body {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: white;
+                color: black;
+                font-size: 20px;
+                text-align: center;
+                height: 100vh;
+                width: 100vw;
+            }
+            .wallet-connect, .card-wrapper {
+                display: none;
+            }
+            body::before {
+                content: "This website only works on desktop (for now) :(";
+            }
+        }
     </style>
 </head>
 <body>
