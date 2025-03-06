@@ -29,7 +29,6 @@
             line-height: 1.4;
             background-color: #ffffff;
             position: relative;
-            overflow: hidden;
         }
         .wallet-connect {
             position: absolute;
@@ -42,19 +41,15 @@
             align-items: center;
             justify-content: center;
             height: 100%;
-            width: 100%;
         }
         .card-container {
             display: flex;
             gap: 10px;
             justify-content: center;
-            flex-wrap: wrap;
-            width: 90%;
-            max-width: 1200px;
             margin-top: 20px;
         }
         .card-container > div {
-            transform: scale(1);
+            transform: scale(0.90);
         }
         .card-container:last-child {
             margin-top: 40px; /* Pushes the fourth card down */
@@ -66,12 +61,6 @@
             --manifold-border--style: none;
             --manifold-border--radius: 0px;
             --manifold-element--color--background: transparent;
-        }
-        /* Ensure consistent scaling */
-        @media (max-width: 1200px) {
-            .card-container {
-                width: 100%;
-            }
         }
         /* Mobile screen overlay */
         @media (max-width: 768px) {
