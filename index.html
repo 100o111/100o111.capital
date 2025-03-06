@@ -62,6 +62,17 @@
             --manifold-border--radius: 0px;
             --manifold-element--color--background: transparent;
         }
+        /* Remove the dot and grey background from status labels */
+        .m-card-catalog-status {
+            background: none !important;
+            color: inherit !important;
+            padding: 0 !important;
+            font-weight: normal !important;
+            display: inline !important;
+        }
+        .m-card-catalog-status::before {
+            content: none !important;
+        }
     </style>
 </head>
 <body>
