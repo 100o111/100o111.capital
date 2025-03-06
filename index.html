@@ -37,9 +37,9 @@
         background-color: #fff;
       }
 
-      /*
-       * 2) Use Manifold CSS variables to remove the black box 
-       *    around the widgets globally.
+      /* 
+       * 2) Remove black box from around the widgets.
+       *    (Set manifold border variables to transparent/none.)
        */
       :root,
       .manifold-widget-container {
@@ -51,17 +51,16 @@
       }
 
       /*
-       * 3) Remove all backgrounds from the card area and 
-       *    "Ended" badge. Keep text, but no grey box.
+       * 3) Remove any background or border from the main card 
+       *    and "Ended" badge. Make "Ended" text black with no background.
        */
-      .manifold-element--card,
-      .manifold-element__badge--ended,
-      .manifold-element__badge--ended * {
+      div[data-widget="m-card-catalog"] .manifold-element--card,
+      div[data-widget="m-card-catalog"] .manifold-element__badge--ended {
         background: none !important;
         border: none !important;
       }
-      /* Reposition "Ended" text if needed */
-      .manifold-element__badge--ended {
+      /* Position the "Ended" text in top-right corner, no padding. */
+      div[data-widget="m-card-catalog"] .manifold-element__badge--ended {
         position: absolute !important;
         top: 8px !important;
         right: 8px !important;
@@ -73,52 +72,57 @@
       }
 
       /*
-       * 4) Hide the word "Price" or "price" label while 
-       *    keeping the numeric value. 
-       *    (Adjust these selectors if needed after checking final DOM.)
+       * 4) Hide the "Price" label while keeping the numeric value.
+       *    These are some known label classes/attributes. 
+       *    Inspect your final DOM if it’s still visible.
        */
-      .manifold-element__price-label,
-      .manifold-element__label--price,
-      .manifold-element__label[data-label="price"] {
+      div[data-widget="m-card-catalog"] .manifold-element__price-label,
+      div[data-widget="m-card-catalog"] .manifold-element__label--price,
+      div[data-widget="m-card-catalog"] .manifold-element__label[data-label="price"] {
         display: none !important;
       }
 
-      /*
-       * 5) Make all catalogs (top & bottom) the same size.
+      /* 
+       * 5) Layout for the catalogs
+       *    - Top row (bigger)
+       *    - Bottom single (smaller)
        */
       .card-wrapper {
         margin: 40px auto;
         max-width: 1200px;
       }
-      .catalog-row .manifold-widget-container,
-      .single-catalog .manifold-widget-container {
-        width: 360px !important;
-        height: auto !important;
-      }
 
-      /* Layout for the top row of three catalogs */
       .catalog-row {
         display: flex;
         justify-content: center;
-        gap: 20px; /* space between items */
+        gap: 20px;
         margin-bottom: 30px;
       }
+      /* Make top row catalogs bigger */
+      .catalog-row div[data-widget="m-card-catalog"] {
+        width: 420px !important; /* adjust as needed */
+        height: auto !important;
+      }
 
-      /* Single catalog on its own row */
       .single-catalog {
         display: flex;
         justify-content: center;
         margin-bottom: 30px;
       }
+      /* Make bottom catalog smaller */
+      .single-catalog div[data-widget="m-card-catalog"] {
+        width: 300px !important; /* adjust as needed */
+        height: auto !important;
+      }
 
       /*
-       * 6) Wallet connect in top-right corner, scaled down more.
+       * 6) Wallet connect in top-right corner, scaled down further.
        */
       .wallet-connect {
         position: absolute;
         top: 20px;
         right: 20px;
-        transform: scale(0.6); /* smaller */
+        transform: scale(0.5); /* smaller */
         transform-origin: top right;
       }
 
@@ -152,7 +156,7 @@
   </head>
 
   <body>
-    <!-- Wallet connect button (top-right corner, scaled down) -->
+    <!-- Wallet connect button (top-right corner, smaller) -->
     <div class="wallet-connect">
       <div
         data-widget="m-connect"
@@ -167,14 +171,14 @@
 
     <!-- Card catalogs container -->
     <div class="card-wrapper">
-      <!-- Row of 3 card catalogs -->
+      <!-- Row of 3 card catalogs (bigger) -->
       <div class="catalog-row">
         <div data-widget="m-card-catalog" data-id="1329" data-network="8453"></div>
         <div data-widget="m-card-catalog" data-id="1330" data-network="8453"></div>
         <div data-widget="m-card-catalog" data-id="1331" data-network="8453"></div>
       </div>
 
-      <!-- Single card catalog (same size) -->
+      <!-- Single card catalog beneath (smaller) -->
       <div class="single-catalog">
         <div data-widget="m-card-catalog" data-id="1332" data-network="8453"></div>
       </div>
