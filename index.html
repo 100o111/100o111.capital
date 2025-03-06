@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
+    <!-- Manifold scripts and styles -->
     <script src="https://connect.manifoldxyz.dev/latest/connect.umd.min.js"></script>
-    <link rel="stylesheet" href="https://connect.manifoldxyz.dev/latest/connect.css">
-    
+    <link rel="stylesheet" href="https://connect.manifoldxyz.dev/latest/connect.css" />
+
     <script src="https://identity.manifoldxyz.dev/latest/walletIdentity.umd.min.js"></script>
     <link rel="stylesheet" href="https://identity.manifoldxyz.dev/latest/walletIdentity.css" />
 
@@ -12,107 +13,123 @@
 
     <script src="https://marketplace.manifoldxyz.dev/latest/marketplace.umd.min.js"></script>
     <link rel="stylesheet" href="https://marketplace.manifoldxyz.dev/latest/marketplace.css" />
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Standard HTML meta tags -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Page title and favicon -->
     <title>100o111</title>
-    <link rel="icon" href="https://pbs.twimg.com/profile_images/1807798095373107200/J8xTQhtv_400x400.jpg">
+    <link
+      rel="icon"
+      href="https://pbs.twimg.com/profile_images/1807798095373107200/J8xTQhtv_400x400.jpg"
+    />
+
     <style>
+      /* Use Helvetica as the main font */
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Helvetica", sans-serif;
+        background-color: #fff;
+      }
+
+      /*
+       * Use Manifold CSS variables to remove the black box
+       * around the widgets
+       */
+      .manifold-widget-container {
+        --manifold-border--color: transparent;
+        --manifold-border--width: 0px;
+        --manifold-border--style: none;
+        --manifold-border--radius: 0px;
+        --manifold-element--color--background: transparent;
+      }
+
+      /* A wrapper for all card catalogs to hide on mobile if needed */
+      .card-wrapper {
+        margin: 40px auto;
+        max-width: 1200px;
+      }
+
+      /* Layout for the top row of three catalogs */
+      .catalog-row {
+        display: flex;
+        justify-content: center;
+        gap: 20px; /* space between items */
+        margin-bottom: 30px;
+      }
+
+      /* Single catalog on its own row */
+      .single-catalog {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 30px;
+      }
+
+      /* Wallet connect in the top-right corner */
+      .wallet-connect {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+      }
+
+      /*
+       * Mobile screen overlay
+       * Hide all widgets on small screens and display a message
+       */
+      @media (max-width: 768px) {
         body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-            font-family: Helvetica, Arial, sans-serif;
-            font-size: 20px;
-            line-height: 1.4;
-            background-color: #ffffff;
-            position: relative;
-            transform: scale(0.5);
-            transform-origin: top left;
-            width: 200%;
-            height: 200%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background-color: white;
+          color: black;
+          font-size: 20px;
+          text-align: center;
+          height: 100vh;
+          width: 100vw;
+          transform: none;
+          margin: 0;
         }
-        .wallet-connect {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-        }
+        .wallet-connect,
         .card-wrapper {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100%;
+          display: none;
         }
-        .card-container {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            margin-top: 20px;
+        body::before {
+          content: "This website only works on desktop (for now) :(";
         }
-        .card-container:last-child {
-            margin-top: 40px; /* Pushes the fourth card down */
-        }
-        /* Use Manifold CSS variables to remove the black box */
-        .manifold-widget-container {
-            --manifold-border--color: transparent;
-            --manifold-border--width: 0px;
-            --manifold-border--style: none;
-            --manifold-border--radius: 0px;
-            --manifold-element--color--background: transparent;
-        }
-        /* Mobile screen overlay */
-        @media (max-width: 768px) {
-            body {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                background-color: white;
-                color: black;
-                font-size: 20px;
-                text-align: center;
-                height: 100vh;
-                width: 100vw;
-                transform: none;
-            }
-            .wallet-connect, .card-wrapper {
-                display: none;
-            }
-            body::before {
-                content: "This website only works on desktop (for now) :(";
-            }
-        }
+      }
     </style>
-</head>
-<body>
+  </head>
+
+  <body>
+    <!-- Wallet connect button (top-right corner) -->
     <div class="wallet-connect">
-        <div 
-            data-widget="m-connect"
-            data-client-id="2d2b78b292a4f331a9e8d1db72bca4000dffbafe630af406c38f5f589da98fe3"  
-            data-app-name="100o111"  
-            data-multi="true"
-            data-wallet-connect-project-id="7ebd0e3229fd171626d40d9e18961f12"
-            data-network="8453">
-        </div>
-    </div>
-    
-    <div class="card-wrapper manifold-widget-container">
-        <div class="card-container">
-            <div data-widget="m-card-catalog" data-id="1329" data-network="8453"></div>
-            <div data-widget="m-card-catalog" data-id="1330" data-network="8453"></div>
-            <div data-widget="m-card-catalog" data-id="1331" data-network="8453"></div>
-        </div>
-        <div class="card-container">
-            <div data-widget="m-card-catalog" data-id="1332" data-network="8453"></div>
-        </div>
+      <div
+        data-widget="m-connect"
+        data-client-id="2d2b78b292a4f331a9e8d1db72bca4000dffbafe630af406c38f5f589da98fe3"
+        data-app-name="100o111"
+        data-multi="true"
+        data-wallet-connect-project-id="7ebd0e3229fd171626d40d9e18961f12"
+        data-network="8453"
+      >
+      </div>
     </div>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            console.log("Manifold widgets loaded");
-        });
-    </script>
-</body>
+    <!-- Card catalogs container -->
+    <div class="card-wrapper">
+      <!-- Row of 3 card catalogs -->
+      <div class="catalog-row">
+        <div data-widget="m-card-catalog" data-id="1329" data-network="8453"></div>
+        <div data-widget="m-card-catalog" data-id="1330" data-network="8453"></div>
+        <div data-widget="m-card-catalog" data-id="1331" data-network="8453"></div>
+      </div>
+
+      <!-- Single card catalog beneath -->
+      <div class="single-catalog">
+        <div data-widget="m-card-catalog" data-id="1332" data-network="8453"></div>
+      </div>
+    </div>
+  </body>
 </html>
