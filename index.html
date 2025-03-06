@@ -81,9 +81,18 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
+            console.log("Manifold widgets loading...");
+
             function applyStyles() {
-                document.querySelectorAll('div[data-widget="m-card-catalog"]').forEach(widget => {
-                    let shadow = widget.shadowRoot || widget.attachShadow({mode: 'open'});
+                const widgets = document.querySelectorAll('div[data-widget="m-card-catalog"]');
+                if (widgets.length === 0) {
+                    console.warn("Manifold widgets not found yet. Retrying...");
+                    setTimeout(applyStyles, 500);
+                    return;
+                }
+                
+                widgets.forEach(widget => {
+                    let shadow = widget.shadowRoot;
                     if (shadow && !shadow.querySelector("#customStyles")) {
                         let style = document.createElement("style");
                         style.id = "customStyles";
@@ -117,11 +126,10 @@
                         shadow.appendChild(style);
                     }
                 });
+                console.log("Custom styles applied to Manifold widgets.");
             }
-
-            const observer = new MutationObserver(() => applyStyles());
-            observer.observe(document.body, { childList: true, subtree: true });
-            applyStyles();
+            
+            setTimeout(applyStyles, 1000);
         });
     </script>
 </body>
