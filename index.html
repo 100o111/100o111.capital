@@ -13,7 +13,7 @@
     <script src="https://marketplace.manifoldxyz.dev/latest/marketplace.umd.min.js"></script>
     <link rel="stylesheet" href="https://marketplace.manifoldxyz.dev/latest/marketplace.css" />
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=0.5">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>100o111</title>
     <link rel="icon" href="https://pbs.twimg.com/profile_images/1807798095373107200/J8xTQhtv_400x400.jpg">
     <style>
@@ -29,6 +29,10 @@
             line-height: 1.4;
             background-color: #ffffff;
             position: relative;
+            transform: scale(0.5);
+            transform-origin: top left;
+            width: 200%;
+            height: 200%;
         }
         .wallet-connect {
             position: absolute;
@@ -47,8 +51,6 @@
             gap: 10px;
             justify-content: center;
             margin-top: 20px;
-            transform: scale(0.5);
-            transform-origin: top center;
         }
         .card-container:last-child {
             margin-top: 40px; /* Pushes the fourth card down */
@@ -73,6 +75,7 @@
                 text-align: center;
                 height: 100vh;
                 width: 100vw;
+                transform: none;
             }
             .wallet-connect, .card-wrapper {
                 display: none;
