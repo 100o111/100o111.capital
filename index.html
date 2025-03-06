@@ -26,10 +26,7 @@
     />
 
     <style>
-      /* 
-        1) Use Helvetica as the main font.
-        2) Remove default margin/padding.
-      */
+      /* 1) Use Helvetica as the main font; remove default margins/padding */
       body {
         margin: 0;
         padding: 0;
@@ -37,9 +34,10 @@
         background-color: #fff;
       }
 
-      /* 
-       * 2) Remove black box from around the widgets.
-       *    (Set manifold border variables to transparent/none.)
+      /*
+       * 2) Remove Manifold's default card border or background.
+       *    Setting these CSS variables ensures the widget containers
+       *    are transparent, with no borders.
        */
       :root,
       .manifold-widget-container {
@@ -51,17 +49,20 @@
       }
 
       /*
-       * 3) Remove any background or border from the main card 
-       *    and "Ended" badge. Make "Ended" text black, no grey box.
+       * 3) Remove any background/border from the card area 
+       *    and "Ended" badge specifically.
        */
       div[data-widget="m-card-catalog"] .manifold-element--card,
+      div[data-widget="m-card-catalog"] .manifold-element--card *,
       div[data-widget="m-card-catalog"] .manifold-element__badge--ended,
       div[data-widget="m-card-catalog"] .manifold-element__badge--ended * {
         background: none !important;
         background-color: transparent !important;
         border: none !important;
+        box-shadow: none !important;
       }
-      /* Position "Ended" in top-right corner, no padding/border. */
+
+      /* Position the "Ended" text in the top-right corner; no background. */
       div[data-widget="m-card-catalog"] .manifold-element__badge--ended {
         position: absolute !important;
         top: 8px !important;
@@ -74,39 +75,37 @@
       }
 
       /*
-       * 4) Hide the "Price" label while keeping the numeric value.
-       *    Manifold often places "Price" in one of these classes/attrs.
-       *    If "Price" still appears, inspect the final DOM and adjust.
+       * 4) Hide the "Price" label text but keep the numeric value.
+       *    In many Manifold widgets, the numeric value is inside <strong> or <b>.
+       *    This approach hides all text in the label except for what's in <strong> or <b>.
        */
-      div[data-widget="m-card-catalog"] .manifold-element__price-label,
       div[data-widget="m-card-catalog"] .manifold-element__label--price,
-      div[data-widget="m-card-catalog"] .manifold-element__label[data-label="price"] {
-        display: none !important;
+      div[data-widget="m-card-catalog"] [data-label="price"] {
+        color: transparent !important; /* hides text, including 'Price:' */
+      }
+      /* Bring the numeric/currency text back to visible */
+      div[data-widget="m-card-catalog"] .manifold-element__label--price strong,
+      div[data-widget="m-card-catalog"] .manifold-element__label--price b,
+      div[data-widget="m-card-catalog"] [data-label="price"] strong,
+      div[data-widget="m-card-catalog"] [data-label="price"] b {
+        color: #000 !important;
       }
 
       /*
-       * 5) Make both top & bottom catalogs the SAME size (420px).
+       * 5) Layout for catalogs
+       *    - All catalogs same size (top + bottom)
        */
       .card-wrapper {
         margin: 40px auto;
         max-width: 1200px;
       }
-      /* All catalogs in top row & single-catalog get 420px width */
-      .catalog-row div[data-widget="m-card-catalog"],
-      .single-catalog div[data-widget="m-card-catalog"] {
-        width: 420px !important; /* adjust as needed */
-        height: auto !important;
-      }
 
-      /* Layout for the top row of three catalogs */
       .catalog-row {
         display: flex;
         justify-content: center;
         gap: 20px;
         margin-bottom: 30px;
       }
-
-      /* Single catalog on its own row */
       .single-catalog {
         display: flex;
         justify-content: center;
@@ -114,8 +113,17 @@
       }
 
       /*
-       * 6) Wallet connect in top-right corner, 
-       *    slightly bigger than before (scale(0.65)).
+       * Force all card-catalog widgets to be the same size (420px).
+       * Adjust if you want them larger or smaller.
+       */
+      div[data-widget="m-card-catalog"] {
+        width: 420px !important;
+        height: auto !important;
+      }
+
+      /*
+       * 6) Wallet connect in top-right corner, slightly larger than before.
+       *    Adjust the scale factor as needed (0.7, 0.8, etc.).
        */
       .wallet-connect {
         position: absolute;
@@ -127,7 +135,7 @@
 
       /*
        * 7) Mobile screen overlay
-       *    Hide all widgets on small screens and display a message
+       *    Hide all widgets on small screens and display a message.
        */
       @media (max-width: 768px) {
         body {
@@ -155,7 +163,7 @@
   </head>
 
   <body>
-    <!-- Wallet connect button (top-right corner) -->
+    <!-- Wallet connect button -->
     <div class="wallet-connect">
       <div
         data-widget="m-connect"
@@ -170,17 +178,18 @@
 
     <!-- Card catalogs container -->
     <div class="card-wrapper">
-      <!-- Row of 3 card catalogs -->
+      <!-- Top row of 3 card catalogs -->
       <div class="catalog-row">
         <div data-widget="m-card-catalog" data-id="1329" data-network="8453"></div>
         <div data-widget="m-card-catalog" data-id="1330" data-network="8453"></div>
         <div data-widget="m-card-catalog" data-id="1331" data-network="8453"></div>
       </div>
 
-      <!-- Single card catalog (same size) -->
+      <!-- Bottom single catalog (same size) -->
       <div class="single-catalog">
         <div data-widget="m-card-catalog" data-id="1332" data-network="8453"></div>
       </div>
     </div>
   </body>
 </html>
+
