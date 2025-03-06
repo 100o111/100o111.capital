@@ -51,8 +51,9 @@
       /*
        * 3) Remove any background/border from the card area 
        *    and "Ended" badge. Also remove the label "Price" 
-       *    but keep the numeric part.
+       *    but keep the numeric value.
        */
+      /* Target the main card container and badge */
       div[data-widget="m-card-catalog"] .manifold-element--card,
       div[data-widget="m-card-catalog"] .manifold-element--card *,
       div[data-widget="m-card-catalog"] .manifold-element__badge--ended,
@@ -62,7 +63,7 @@
         border: none !important;
         box-shadow: none !important;
       }
-      /* Position "Ended" text in top-right corner, no background. */
+      /* Position "Ended" text in top-right corner, no background */
       div[data-widget="m-card-catalog"] .manifold-element__badge--ended {
         position: absolute !important;
         top: 8px !important;
@@ -73,38 +74,22 @@
         border-radius: 0 !important;
         z-index: 2;
       }
-
-      /* 
-       * Hide the "Price" label text while keeping numeric value.
-       * This tries to hide any text except what's in <strong> or <b>.
-       */
+      /* Hide the "Price" label text while keeping numeric/currency text */
       div[data-widget="m-card-catalog"] .manifold-element__label--price,
       div[data-widget="m-card-catalog"] [data-label="price"] {
         color: transparent !important; /* hides "Price:" text */
       }
-      /* Restore color for numeric or currency text in <strong> or <b> */
       div[data-widget="m-card-catalog"] .manifold-element__label--price strong,
       div[data-widget="m-card-catalog"] .manifold-element__label--price b,
       div[data-widget="m-card-catalog"] [data-label="price"] strong,
       div[data-widget="m-card-catalog"] [data-label="price"] b {
-        color: #000 !important;
+        color: #000 !important; /* shows the numeric portion */
       }
 
       /*
-       * 4) Force all m-card-catalog widgets to the same width & height.
-       *    Adjust the height if you see content get cut off or extra space.
-       *    This is the only guaranteed way to make them visually identical.
-       */
-      div[data-widget="m-card-catalog"] {
-        display: inline-block !important;
-        vertical-align: top !important;
-        width: 420px !important;  /* same width */
-        height: 600px !important; /* same height (adjust as needed) */
-        overflow: hidden !important; /* hide any overflow if content is larger */
-      }
-
-      /*
-       * 5) Layout for top row (3 side by side) and bottom row (1).
+       * 4) Layout for top row (3 side by side) and bottom row (1).
+       *    Each row uses different widths, so you can adjust them
+       *    independently to match if needed.
        */
       .card-wrapper {
         margin: 40px auto;
@@ -122,43 +107,32 @@
         margin-bottom: 30px;
       }
 
+      /* 
+       * 5) Two different sizes for top vs bottom, so you can tweak
+       *    them until they match visually.
+       *    Increase/decrease these values as needed.
+       */
+      /* Top row (bigger) */
+      .catalog-row div[data-widget="m-card-catalog"] {
+        width: 420px !important;
+        height: auto !important;
+      }
+      /* Bottom (slightly smaller) */
+      .single-catalog div[data-widget="m-card-catalog"] {
+        width: 380px !important;
+        height: auto !important;
+      }
+
       /*
-       * 6) Wallet connect in top-right corner, slightly larger scale.
-       *    Increase or decrease scale factor as you prefer.
+       * 6) Wallet connect in top-right corner at a moderate scale.
+       *    Adjust the scale factor as you prefer.
        */
       .wallet-connect {
         position: absolute;
         top: 20px;
         right: 20px;
-        transform: scale(0.65);
+        transform: scale(0.7);
         transform-origin: top right;
-      }
-
-      /*
-       * 7) Mobile screen overlay
-       *    Hide all widgets on small screens and display a message.
-       */
-      @media (max-width: 768px) {
-        body {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          background-color: white;
-          color: black;
-          font-size: 20px;
-          text-align: center;
-          height: 100vh;
-          width: 100vw;
-          transform: none;
-          margin: 0;
-        }
-        .wallet-connect,
-        .card-wrapper {
-          display: none;
-        }
-        body::before {
-          content: "This website only works on desktop (for now) :(";
-        }
       }
     </style>
   </head>
@@ -179,14 +153,14 @@
 
     <!-- Card catalogs container -->
     <div class="card-wrapper">
-      <!-- Top row of 3 card catalogs (all forced to 420x600) -->
+      <!-- Top row of 3 card catalogs -->
       <div class="catalog-row">
         <div data-widget="m-card-catalog" data-id="1329" data-network="8453"></div>
         <div data-widget="m-card-catalog" data-id="1330" data-network="8453"></div>
         <div data-widget="m-card-catalog" data-id="1331" data-network="8453"></div>
       </div>
 
-      <!-- Bottom single catalog (also forced to 420x600) -->
+      <!-- Bottom single catalog -->
       <div class="single-catalog">
         <div data-widget="m-card-catalog" data-id="1332" data-network="8453"></div>
       </div>
