@@ -26,9 +26,7 @@
     />
 
     <style>
-      /* 
-        1) Use Helvetica as the main font; remove default margins/padding.
-      */
+      /* 1) Use Helvetica as the main font; remove default margins/padding */
       body {
         margin: 0;
         padding: 0;
@@ -51,21 +49,21 @@
       }
 
       /*
-       * 3) Aggressively remove any background, box-shadow, 
-       *    or border from everything inside the card-catalog widgets.
-       *    Also remove the text "Price" but keep numeric values.
+       * 3) Remove any background/border from the card area 
+       *    and "Ended" badge. Also remove the label "Price" 
+       *    but keep the numeric value.
        */
-      div[data-widget="m-card-catalog"] * {
+      /* Target the main card container and badge */
+      div[data-widget="m-card-catalog"] .manifold-element--card,
+      div[data-widget="m-card-catalog"] .manifold-element--card *,
+      div[data-widget="m-card-catalog"] .manifold-element__badge--ended,
+      div[data-widget="m-card-catalog"] .manifold-element__badge--ended * {
         background: none !important;
         background-color: transparent !important;
         border: none !important;
         box-shadow: none !important;
       }
-
-      /* 
-       * 3a) Specifically position the "Ended" badge in top-right, 
-       *     no background, black text.
-       */
+      /* Position "Ended" text in top-right corner, no background */
       div[data-widget="m-card-catalog"] .manifold-element__badge--ended {
         position: absolute !important;
         top: 8px !important;
@@ -76,37 +74,22 @@
         border-radius: 0 !important;
         z-index: 2;
       }
-
-      /*
-       * 4) Hide the exact word "Price" if it appears outside <strong> or <b>.
-       *    Also hide known label classes/attributes that might contain "Price".
-       *    Then restore color for numeric text in <strong> or <b>.
-       */
-      /* Hide known label elements that say "Price" */
+      /* Hide the "Price" label text while keeping numeric/currency text */
       div[data-widget="m-card-catalog"] .manifold-element__label--price,
-      div[data-widget="m-card-catalog"] .manifold-element__price-label,
-      div[data-widget="m-card-catalog"] .manifold-element__label[data-label="price"],
-      div[data-widget="m-card-catalog"] [class*="price-label"] {
-        color: transparent !important; 
+      div[data-widget="m-card-catalog"] [data-label="price"] {
+        color: transparent !important; /* hides "Price:" text */
       }
-      /* If "Price" is in the same strong/b with the numeric value, 
-         we can't selectively remove just "Price" in CSS. But we can 
-         at least ensure the text is black. */
       div[data-widget="m-card-catalog"] .manifold-element__label--price strong,
       div[data-widget="m-card-catalog"] .manifold-element__label--price b,
-      div[data-widget="m-card-catalog"] .manifold-element__price-label strong,
-      div[data-widget="m-card-catalog"] .manifold-element__price-label b,
-      div[data-widget="m-card-catalog"] .manifold-element__label[data-label="price"] strong,
-      div[data-widget="m-card-catalog"] .manifold-element__label[data-label="price"] b,
-      div[data-widget="m-card-catalog"] [class*="price-label"] strong,
-      div[data-widget="m-card-catalog"] [class*="price-label"] b {
-        color: #000 !important;
+      div[data-widget="m-card-catalog"] [data-label="price"] strong,
+      div[data-widget="m-card-catalog"] [data-label="price"] b {
+        color: #000 !important; /* shows the numeric portion */
       }
 
       /*
-       * 5) Layout for the catalogs: 
-       *    - Top row (3 side by side)
-       *    - Bottom single
+       * 4) Layout for top row (3 side by side) and bottom row (1).
+       *    Each row uses different widths, so you can adjust them
+       *    independently to match if needed.
        */
       .card-wrapper {
         margin: 40px auto;
@@ -124,25 +107,25 @@
         margin-bottom: 30px;
       }
 
-      /*
-       * 5a) Two different widths for top vs bottom 
-       *     so you can manually tweak them until 
-       *     they visually match.
+      /* 
+       * 5) Two different sizes for top vs bottom, so you can tweak
+       *    them until they match visually.
+       *    Increase/decrease these values as needed.
        */
       /* Top row (bigger) */
       .catalog-row div[data-widget="m-card-catalog"] {
         width: 420px !important;
         height: auto !important;
       }
-      /* Bottom (slightly smaller or bigger - adjust as needed) */
+      /* Bottom (slightly smaller) */
       .single-catalog div[data-widget="m-card-catalog"] {
-        width: 400px !important;
+        width: 380px !important;
         height: auto !important;
       }
 
       /*
        * 6) Wallet connect in top-right corner at a moderate scale.
-       *    Adjust the scale factor as you prefer (0.7, 0.8, etc.).
+       *    Adjust the scale factor as you prefer.
        */
       .wallet-connect {
         position: absolute;
@@ -150,33 +133,6 @@
         right: 20px;
         transform: scale(0.7);
         transform-origin: top right;
-      }
-
-      /*
-       * 7) MOBILE BLOCK: bring back the overlay that says 
-       *    "This website only works on desktop (for now) :("
-       */
-      @media (max-width: 768px) {
-        body {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          background-color: white;
-          color: black;
-          font-size: 20px;
-          text-align: center;
-          height: 100vh;
-          width: 100vw;
-          transform: none;
-          margin: 0;
-        }
-        .wallet-connect,
-        .card-wrapper {
-          display: none;
-        }
-        body::before {
-          content: "This website only works on desktop (for now) :(";
-        }
       }
     </style>
   </head>
