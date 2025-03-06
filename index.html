@@ -55,12 +55,36 @@
             margin-top: 40px; /* Pushes the fourth card down */
         }
         /* Remove the black box around the listing */
-        .m-card-catalog {
+        div[data-widget="m-card-catalog"] {
             border: none !important;
             box-shadow: none !important;
             background: transparent !important;
         }
     </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const interval = setInterval(() => {
+                const widgets = document.querySelectorAll('div[data-widget="m-card-catalog"]');
+
+                widgets.forEach(widget => {
+                    let shadowRoot = widget.shadowRoot || widget.attachShadow({mode: 'open'});
+                    if (shadowRoot) {
+                        let style = document.createElement("style");
+                        style.textContent = `
+                            * {
+                                border: none !important;
+                                box-shadow: none !important;
+                                background: transparent !important;
+                            }
+                        `;
+                        shadowRoot.appendChild(style);
+                    }
+                });
+
+                if (widgets.length) clearInterval(interval);
+            }, 500);
+        });
+    </script>
 </head>
 <body>
     <div class="wallet-connect">
