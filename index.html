@@ -54,6 +54,14 @@
         .card-container:last-child {
             margin-top: 40px; /* Pushes the fourth card down */
         }
+        /* Use Manifold CSS variables to remove the black box */
+        .manifold-widget-container {
+            --manifold-border--color: transparent;
+            --manifold-border--width: 0px;
+            --manifold-border--style: none;
+            --manifold-border--radius: 0px;
+            --manifold-element--color--background: transparent;
+        }
     </style>
 </head>
 <body>
@@ -67,7 +75,7 @@
         </div>
     </div>
     
-    <div class="card-wrapper">
+    <div class="card-wrapper manifold-widget-container">
         <div class="card-container">
             <div data-widget="m-card-catalog" data-id="1329" data-network="8453"></div>
             <div data-widget="m-card-catalog" data-id="1330" data-network="8453"></div>
