@@ -33,6 +33,20 @@
         font-family: "Helvetica", sans-serif;
         background-color: #fff;
       }
+         /* Overlay text positioned in the top-left corner */
+      .overlay-text {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        font-size: 12px;
+        font-family: "Helvetica", sans-serif;
+        color: #000;
+        background: rgba(255, 255, 255, 0.8);
+        padding: 5px 10px;
+        border-radius: 5px;
+        z-index: 9999;
+        pointer-events: none;
+      }
 
       /*
        * 2) Remove Manifold's default card border or background.
@@ -173,6 +187,8 @@
       >
       </div>
     </div>
+      <!-- Overlay text -->
+    <div class="overlay-text">?</div>
 
     <!-- Card catalogs container -->
     <div class="card-wrapper">
